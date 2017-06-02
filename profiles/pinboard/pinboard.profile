@@ -72,8 +72,8 @@ function _wr_install_finished(&$install_state) {
 
 function _wr_profile_import_sql($filename){
   global $databases;
-  if (@mysql_connect($databases['default']['default']['host'], $databases['default']['default']['username'], $databases['default']['default']['password'])){
-    mysql_select_db($databases['default']['default']['database']);
+  if (@pg_connect($databases['default']['default']['host'],$databases['default']['default']['database'], $databases['default']['default']['username'], $databases['default']['default']['password'])){
+  
     $buffer='';
     $count=0;
     $handle = @fopen($filename, "r");
@@ -83,13 +83,13 @@ function _wr_profile_import_sql($filename){
         $buffer.=$line;
         if(preg_match('|;$|', $line)){
           $count++;
-          mysql_query(_wr_profile_prefixTables($buffer));
+          pg_query(_wr_profile_prefixTables($buffer));
           $buffer='';
         }
       }
       fclose($handle);
     }
-    mysql_close();
+    pg_close();
   }
   return $count;
 }
