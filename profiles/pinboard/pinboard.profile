@@ -69,11 +69,11 @@ function _wr_profile_install_configure_form_submit($form, &$form_state) {
 function _wr_install_finished(&$install_state) {
   drupal_goto();
 }
-
+ 
 function _wr_profile_import_sql($filename){
   global $databases;
-  if (@pg_connect($databases['default']['default']['host'],$databases['default']['default']['database'], $databases['default']['default']['username'], $databases['default']['default']['password'])){
-  
+  if (@mysql_connect($databases['default']['default']['host'], $databases['default']['default']['username'], $databases['default']['default']['password'])){
+    mysql_select_db($databases['default']['default']['database']);
     $buffer='';
     $count=0;
     $handle = @fopen($filename, "r");
@@ -83,13 +83,13 @@ function _wr_profile_import_sql($filename){
         $buffer.=$line;
         if(preg_match('|;$|', $line)){
           $count++;
-          pg_query(_wr_profile_prefixTables($buffer));
+          mysql_query(_wr_profile_prefixTables($buffer));
           $buffer='';
         }
       }
       fclose($handle);
     }
-    pg_close();
+    mysql_close();
   }
   return $count;
 }
