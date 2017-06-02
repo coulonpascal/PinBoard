@@ -210,21 +210,7 @@
  *   );
  * @endcode
  */
-$databases = array (
-  'default' => 
-  array (
-    'default' => 
-    array (
-      'database' => 'pinboard_drupal',
-      'username' => 'pinboard_user',
-      'password' => 'pinboard2017',
-      'host' => 'localhost',
-      'port' => '',
-      'driver' => 'pgsql',
-      'prefix' => '',
-    ),
-  ),
-);
+
 
 /**
  * Access control for update.php script.
