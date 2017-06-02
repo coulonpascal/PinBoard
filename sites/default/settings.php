@@ -215,12 +215,12 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'pinrncom_db',
-      'username' => 'pinrncom_admin',
-      'password' => 'pa$$w0rd',
+      'database' => 'pinboard_drupal',
+      'username' => 'pinboard_user',
+      'password' => 'pinboard2017',
       'host' => 'localhost',
       'port' => '',
-      'driver' => 'mysql',
+      'driver' => 'pgsql',
       'prefix' => '',
     ),
   ),
